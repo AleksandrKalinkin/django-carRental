@@ -1,0 +1,155 @@
+/* CSS переменные для тем */
+:root {
+  /* Светлая тема */
+  --bg-color: #ffffff;
+  --text-color: #232222;
+  --header-bg: #f8f9fa;
+  --border-color: #e0e0e0;
+  --primary-color: #3498db;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --logo-filter: none;
+}
+
+.dark-theme {
+  /* Темная тема */
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --header-bg: #2c3e50;
+  --border-color: #444444;
+  --primary-color: #5dade2;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --logo-filter: brightness(0) invert(1);
+}
+
+/* Базовые стили */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Контейнер */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Шапка */
+.header {
+  background-color: var(--header-bg);
+  padding: 15px 0;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Логотип */
+.logo img {
+  height: auto;
+  max-height: 200px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: var(--logo-filter);
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+/* Навигация */
+.nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  margin-left: 30px;
+}
+
+.nav ul li:first-child {
+  margin-left: 0;
+}
+
+.nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav ul li a:hover {
+  color: var(--primary-color);
+}
+
+.nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.5s ease;
+}
+
+.nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Кнопка переключения темы */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 5px;
+  margin-left: 20px;
+  color: var(--text-color);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(-30deg);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    padding: 10px 15px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav ul li {
+    margin: 0 10px 10px;
+  }
+
+  .theme-toggle {
+    margin: 10px 0 0 0;
+  }
+}
