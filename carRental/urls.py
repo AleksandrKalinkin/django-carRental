@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from cars.views import index #импортируем метод index из view для своего приложения
 from cars.views import cars #импортируем метод index из view для своего приложения
+from cars.views import contacts
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"), #добавили индекс
     path('cars/', cars, name="cars"), #добавили cars
+    path('contacts/', contacts, name="contacts"),
 ]

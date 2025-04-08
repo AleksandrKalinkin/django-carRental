@@ -7,7 +7,7 @@
   --border-color: #e0e0e0;
   --primary-color: #3498db;
   --shadow-color: rgba(0, 0, 0, 0.1);
-  --logo-filter: none;
+  --logo-color: #232222;
 }
 
 .dark-theme {
@@ -18,7 +18,7 @@
   --border-color: #444444;
   --primary-color: #5dade2;
   --shadow-color: rgba(0, 0, 0, 0.3);
-  --logo-filter: brightness(0) invert(1);
+  --logo-color: #f0f0f0;
 }
 
 /* Базовые стили */
@@ -57,15 +57,21 @@ body {
   align-items: center;
 }
 
-/* Логотип */
-.logo img {
-  height: auto;
-  max-height: 200px;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  filter: var(--logo-filter);
+/* Логотип (ОСНОВНЫЕ ИЗМЕНЕНИЯ ЗДЕСЬ) */
+.logo {
+  width: 180px; /* Увеличенный размер */
+  transition: transform 0.3s ease;
 }
 
-.logo img:hover {
+.logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+  image-rendering: crisp-edges;
+}
+
+.logo:hover {
   transform: scale(1.05);
 }
 
@@ -137,6 +143,7 @@ body {
   }
 
   .logo {
+    width: 150px; /* Чуть меньше на мобильных */
     margin-bottom: 10px;
   }
 

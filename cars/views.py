@@ -6,3 +6,6 @@ def index(request):
 
 def cars(request):
     return render(request, "cars/cars.html")
+
+def contacts(request):
+    return render(request, "cars/contacts.html")

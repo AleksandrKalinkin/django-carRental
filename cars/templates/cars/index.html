@@ -1,25 +1,27 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarRent - Аренда автомобилей</title>
-    <link rel="stylesheet" href="/static/css/index2.css">
-    <script src="/static/js/script.js" defer></script>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
 </head>
 <body class="light-theme">
     <!-- Шапка сайта -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="/static/images/logo.png" alt="Рязань Аренда Авто" width="120">
+                <img src="/static/images/logo.png" alt="Рязань Аренда Авто" width="180">
             </div>
 
             <nav class="nav">
                 <ul>
                     <li><a href="#">Каталог</a></li>
                     <li><a href="#">О нас</a></li>
-                    <li><a href="cd/contacts.html">Контакты</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
                     <li><a href="#">Отзывы</a></li>
                 </ul>
             </nav>
@@ -29,7 +31,5 @@
             </button>
         </div>
     </header>
-
-
 </body>
 </html>
