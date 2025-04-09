@@ -9,3 +9,6 @@ def cars(request):
 
 def contacts(request):
     return render(request, "cars/contacts.html")
+
+def catalog(request):
+    return render(request, "cars/catalog.html")

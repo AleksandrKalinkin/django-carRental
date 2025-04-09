@@ -1,34 +1,45 @@
-{% load static %}
+{% load static %}  <!-- Загрузка статических файлов Django -->
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarRent - Аренда автомобилей</title>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <script src="{% static 'js/script.js' %}" defer></script>
+    <!-- Базовые настройки страницы -->
+    <meta charset="UTF-8">  <!-- Кодировка UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Адаптивность -->
+    <title>CarRentRzn - Аренда автомобилей в Рязани</title>  <!-- Заголовок страницы -->
+    <link rel="stylesheet" href="{% static 'css/index2.css' %}">  <!-- Подключение CSS -->
+    <script src="{% static 'js/script.js' %}" defer></script>  <!-- Подключение JS с отложенной загрузкой -->
 </head>
-<body class="light-theme">
+<body class="light-theme">  <!-- Начало body с классом светлой темы по умолчанию -->
     <!-- Шапка сайта -->
     <header class="header">
-        <div class="container">
+        <div class="container">  <!-- Основной контейнер -->
+            <!-- Логотип -->
             <div class="logo">
                 <img src="/static/images/logo.png" alt="Рязань Аренда Авто" width="180">
             </div>
 
+            <!-- Навигационное меню -->
             <nav class="nav">
                 <ul>
-                    <li><a href="#">Каталог</a></li>
+                    <li><a href="{% url 'catalog' %}">Каталог</a></li>
                     <li><a href="#">О нас</a></li>
                     <li><a href="{% url 'contacts' %}">Контакты</a></li>
                     <li><a href="#">Отзывы</a></li>
                 </ul>
             </nav>
 
-            <button class="theme-toggle">
-                <span class="theme-icon">&#127768;</span>
-            </button>
+            <!-- Блок кнопок -->
+            <div class="header-buttons">
+                <!-- Кнопка переключения темы -->
+                <button class="theme-toggle" aria-label="Переключить тему">
+                    <span class="theme-icon">☀</span>  <!-- Иконка солнца -->
+                </button>
+                <!-- Кнопка авторизации -->
+                <button class="auth-button">
+                    <span class="auth-icon">👤</span>  <!-- Иконка пользователя -->
+                </button>
+            </div>
         </div>
     </header>
 </body>
