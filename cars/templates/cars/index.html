@@ -1,25 +1,21 @@
-{% load static %}  <!-- Загрузка статических файлов Django -->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Базовые настройки страницы -->
-    <meta charset="UTF-8">  <!-- Кодировка UTF-8 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Адаптивность -->
-    <title>CarRentRzn - Аренда автомобилей в Рязани</title>  <!-- Заголовок страницы -->
-    <link rel="stylesheet" href="{% static 'css/index2.css' %}">  <!-- Подключение CSS -->
-    <script src="{% static 'js/script.js' %}" defer></script>  <!-- Подключение JS с отложенной загрузкой -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarRentRzn - Аренда автомобилей в Рязани</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
 </head>
-<body class="light-theme">  <!-- Начало body с классом светлой темы по умолчанию -->
+<body class="light-theme">
     <!-- Шапка сайта -->
     <header class="header">
-        <div class="container">  <!-- Основной контейнер -->
-            <!-- Логотип -->
+        <div class="container">
             <div class="logo">
                 <img src="/static/images/logo.png" alt="Рязань Аренда Авто" width="180">
             </div>
 
-            <!-- Навигационное меню -->
             <nav class="nav">
                 <ul>
                     <li><a href="{% url 'catalog' %}">Каталог</a></li>
@@ -29,18 +25,44 @@
                 </ul>
             </nav>
 
-            <!-- Блок кнопок -->
             <div class="header-buttons">
-                <!-- Кнопка переключения темы -->
-                <button class="theme-toggle" aria-label="Переключить тему">
-                    <span class="theme-icon">☀</span>  <!-- Иконка солнца -->
+                <button class="theme-toggle" aria-label="Переключить тему" onclick="toggleTheme()">
+                    <span class="theme-icon">☀</span>
                 </button>
-                <!-- Кнопка авторизации -->
                 <button class="auth-button">
-                    <span class="auth-icon">👤</span>  <!-- Иконка пользователя -->
+                    <span class="auth-icon">👤</span>
                 </button>
             </div>
         </div>
     </header>
+
+    <!-- Основное содержимое страницы -->
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Кнопка помощника -->
+    <div class="help-button-container">
+        <button class="help-button" id="helpButton" onclick="toggleHelpModal()">
+            <span class="help-button-text">Помощь</span>
+            <span class="help-button-icon">?</span>
+        </button>
+
+        <!-- Модальное окно помощника -->
+        <div class="help-modal" id="helpModal">
+            <div class="help-modal-content">
+                <button class="help-close-button" onclick="closeHelpModal()">&times;</button>
+                <h3>Важная информация</h3>
+                <ul class="help-list">
+                    <li><i class="icon-location"></i> Находимся в Рязани</li>
+                    <li><i class="icon-age"></i> Возраст аренды - с 21 года</li>
+                    <li><i class="icon-time"></i> Работаем 24/7</li>
+                    <li><i class="icon-phone"></i> Телефон: +7 (XXX) XXX-XX-XX</li>
+                    <li><i class="icon-payment"></i> Принимаем безналичную оплату</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
