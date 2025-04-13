@@ -1,92 +1,97 @@
 /* CSS-переменные для светлой темы */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #232222;
-  --header-bg: #f8f9fa;
-  --border-color: #e0e0e0;
-  --primary-color: #3498db;
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --logo-color: #232222;
+  --bg-color: #ffffff;  /* Основной цвет фона */
+  --text-color: #232222;  /* Основной цвет текста */
+  --header-bg: #f8f9fa;  /* Фон шапки */
+  --border-color: #e0e0e0;  /* Цвет границ */
+  --primary-color: #3498db;  /* Основной цвет (акцентный) */
+  --shadow-color: rgba(0, 0, 0, 0.1);  /* Цвет теней */
+  --logo-color: #232222;  /* Цвет логотипа */
 }
 
 /* CSS-переменные для темной темы */
 .dark-theme {
-  --bg-color: #1a1a1a;
-  --text-color: #f0f0f0;
-  --header-bg: #2c3e50;
-  --border-color: #444444;
-  --primary-color: #5dade2;
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --logo-color: #f0f0f0;
+  --bg-color: #1a1a1a;  /* Темный фон */
+  --text-color: #f0f0f0;  /* Светлый текст */
+  --header-bg: #2c3e50;  /* Темный фон шапки */
+  --border-color: #444444;  /* Темные границы */
+  --primary-color: #5dade2;  /* Акцентный цвет для темной темы */
+  --shadow-color: rgba(0, 0, 0, 0.3);  /* Более темные тени */
+  --logo-color: #f0f0f0;  /* Цвет логотипа в темной теме */
 }
 
-/* Базовые стили */
+
+/* Базовые стили для всего документа */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;  /* Убирает внешние отступы */
+  padding: 0;  /* Убирает внутренние отступы */
+  font-family: 'Arial', sans-serif;  /* Основной шрифт */
+  background-color: var(--bg-color);  /* Использует CSS-переменную для фона */
+  color: var(--text-color);  /* Использует CSS-переменную для цвета текста */
+  transition: background-color 0.3s ease, color 0.3s ease;  /* Плавное переключение темы */
 }
 
+/* Контейнер для ограничения ширины контента */
 .container {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-  box-sizing: border-box;
+  max-width: 1200px;  /* Максимальная ширина контента */
+  margin: 0 auto;  /* Центрирование по горизонтали */
+  padding: 0 15px;  /* Отступы по бокам */
+  box-sizing: border-box;  /* Учет padding в общей ширине */
 }
 
-/* Шапка */
+/* Стили шапки сайта */
 .header {
-  background-color: var(--header-bg);
-  padding: 8px 0;
-  box-shadow: 0 2px 5px var(--shadow-color);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  background-color: var(--header-bg);  /* Фон из CSS-переменной */
+  padding: 8px 0;  /* Внутренние отступы */
+  box-shadow: 0 2px 5px var(--shadow-color);  /* Тень шапки */
+  position: sticky;  /* Липкая шапка при скролле */
+  top: 0;  /* Прилипает к верху */
+  z-index: 100;  /* Уровень над другими элементами */
 }
 
+/* Флекс-контейнер для элементов шапки */
 .header .container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between;  /* Распределение пространства между элементами */
+  align-items: center;  /* Выравнивание по вертикали */
 }
 
+/* Стили логотипа */
 .logo {
   width: 180px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease;  /* Плавное увеличение при наведении */
 }
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05);  /* Увеличение логотипа при наведении */
 }
 
-/* Навигация */
+/* Стили навигационного меню */
 .nav ul {
-  display: flex;
-  list-style: none;
+  display: flex;  /* Горизонтальное меню */
+  list-style: none;  /* Убирает маркеры списка */
   margin: 0;
   padding: 0;
 }
 .nav ul li {
-  margin-left: 30px;
+  margin-left: 30px;  /* Отступ между пунктами меню */
 }
 .nav ul li:first-child {
-  margin-left: 0;
+  margin-left: 0;  /* Убирает отступ у первого элемента */
 }
 .nav ul li a {
-  color: var(--text-color);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 15px 0;
-  font-size: 1.2em;
-  position: relative;
-  transition: color 0.3s ease;
+  color: var(--text-color);  /* Цвет ссылок */
+  text-decoration: none;  /* Убирает подчеркивание */
+  font-weight: 500;  /* Жирность шрифта */
+  padding: 15px 0;  /* Внутренние отступы */
+  font-size: 1.2em;  /* Размер шрифта */
+  position: relative;  /* Для анимации подчеркивания */
+  transition: color 0.3s ease;  /* Плавное изменение цвета */
 }
 .nav ul li a:hover {
-  color: var(--primary-color);
+  color: var(--primary-color);  /* Цвет при наведении */
 }
+/* Анимация подчеркивания ссылок */
 .nav ul li a::after {
   content: '';
   position: absolute;
@@ -98,29 +103,40 @@ body {
   transition: width 0.5s ease;
 }
 .nav ul li a:hover::after {
-  width: 100%;
+  width: 100%;  /* Полное подчеркивание при наведении */
 }
 
-/* Кнопки в шапке */
+/* Стили кнопок в шапке */
 .header-buttons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 15px;  /* Расстояние между кнопками */
 }
 .theme-toggle {
   background: transparent;
   border: none;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--text-color);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease;  /* Плавное увеличение */
 }
+.theme-icon {
+  font-size: 32px;  /* Размер иконки */
+  width: 100%;      /* Занимает всю ширину кнопки */
+  height: 100%;     /* Занимает всю высоту кнопки */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;  /* Плавное изменение */
+  filter: contrast(0) brightness(0.9);
+}
+
 .theme-toggle:hover {
-  transform: scale(1.1);
+  transform: scale(1.1);  /* Увеличение при наведении */
 }
 
 .auth-button {
@@ -133,42 +149,42 @@ body {
   transition: transform 0.3s ease;
 }
 .auth-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.1);  /* Увеличение при наведении */
 }
 
-/* Основное содержимое */
+/* Стили основного контента */
 .main-content {
-  min-height: calc(100vh - 180px);
-  padding: 20px 0;
+  min-height: calc(100vh - 260px);  /* Минимальная высота (высота экрана минус высота шапки и подвала) */
+  padding: 20px 0;  /* Внутренние отступы */
 }
 
-/* Помощник */
+/* Стили кнопки помощника */
 .help-button-container {
-  position: fixed;
+  position: fixed;  /* Фиксированное позиционирование */
   right: 30px;
   bottom: 30px;
-  z-index: 999;
+  z-index: 999;  /* Высокий уровень для отображения поверх других элементов */
 }
 .help-button {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 50px;  /* Скругленные углы */
   padding: 15px 25px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);  /* Тень */
+  transition: all 0.3s ease;  /* Плавные изменения */
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 2px solid white;
+  gap: 10px;  /* Расстояние между текстом и иконкой */
+  border: 2px solid white;  /* Белая рамка */
 }
 .help-button:hover {
-  background-color: #2980b9;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background-color: #2980b9;  /* Темнее при наведении */
+  transform: translateY(-3px);  /* Сдвиг вверх */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);  /* Увеличенная тень */
 }
 .help-button-icon {
   display: inline-flex;
@@ -178,13 +194,13 @@ body {
   height: 24px;
   background: white;
   color: var(--primary-color);
-  border-radius: 50%;
+  border-radius: 50%;  /* Круглая иконка */
   font-weight: bold;
 }
 
-/* Модальное окно */
+/* Стили модального окна помощника */
 .help-modal {
-  display: none;
+  display: none;  /* Скрыто по умолчанию */
   position: fixed;
   right: 30px;
   bottom: 90px;
@@ -192,8 +208,8 @@ body {
   background-color: var(--bg-color);
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  animation: fadeIn 0.3s;
+  z-index: 1000;  /* Высокий уровень */
+  animation: fadeIn 0.3s;  /* Анимация появления */
 }
 .help-modal-content {
   position: relative;
@@ -250,45 +266,46 @@ body {
   color: var(--primary-color);
 }
 
-/* Анимации */
+/* Анимация появления модального окна */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }  /* Начальное состояние */
+  to { opacity: 1; transform: translateY(0); }  /* Конечное состояние */
 }
 
-/* Адаптивность */
+/* Адаптивные стили для разных размеров экранов */
 @media (max-width: 991.98px) {
   .nav ul li {
-    margin-left: 20px;
+    margin-left: 20px;  /* Уменьшение отступов между пунктами меню */
   }
   .logo {
-    width: 160px;
+    width: 160px;  /* Уменьшение логотипа */
   }
 }
 
 @media (max-width: 767.98px) {
   .header .container {
-    flex-direction: column;
+    flex-direction: column;  /* Вертикальное расположение элементов шапки */
   }
   .logo {
-    margin-bottom: 15px;
+    margin-bottom: 15px;  /* Отступ под логотипом */
   }
   .nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap;  /* Перенос пунктов меню на несколько строк */
+    justify-content: center;  /* Центрирование меню */
   }
   .nav ul li {
-    margin: 0 12px;
+    margin: 0 12px;  /* Отступы вокруг пунктов меню */
   }
 }
 
 @media (max-width: 575.98px) {
   .nav ul li {
-    margin: 0 8px;
+    margin: 0 8px;  /* Еще меньше отступы */
   }
   .nav ul li a {
-    font-size: 1em;
+    font-size: 1em;  /* Уменьшение размера шрифта */
   }
+  /* Адаптация кнопки помощника для мобильных */
   .help-button-container {
     right: 15px;
     bottom: 15px;
@@ -299,7 +316,7 @@ body {
     height: 40px;
   }
   .help-button-text {
-    display: none;
+    display: none;  /* Скрытие текста на маленьких экранах */
   }
   .help-button-icon {
     width: 28px;
@@ -312,4 +329,77 @@ body {
     width: calc(100% - 30px);
     max-width: 260px;
   }
+}
+
+/* Стили для карусели уникальных автомобилей */
+.unique-cars {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.carousel {
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.carousel-indicators button {
+    background-color: var(--primary-color);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 15px;
+}
+
+/* Адаптивность карусели */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-item img {
+        height: 250px;
+    }
+
+    .carousel-caption {
+        padding: 5px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 16px;
+    }
+
+    .carousel-caption p {
+        font-size: 12px;
+    }
+}
+
+/* Стили футера для темной темы */
+.dark-theme footer {
+    background-color: #343a40 !important;
+    border-top: 1px solid var(--border-color);
+}
+
+.dark-theme footer a:hover {
+    color: var(--primary-color) !important;
+}
+
+.dark-theme footer hr {
+    border-color: var(--border-color);
 }
