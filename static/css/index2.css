@@ -20,7 +20,6 @@
   --logo-color: #f0f0f0;  /* Цвет логотипа в темной теме */
 }
 
-
 /* Базовые стили для всего документа */
 body {
   margin: 0;  /* Убирает внешние отступы */
@@ -63,7 +62,7 @@ body {
   transition: transform 0.3s ease;  /* Плавное увеличение при наведении */
 }
 .logo:hover {
-  transform: scale(1.05);  /* Увеличение логотипа при наведении */
+  transform: scale(1.2);  /* Увеличение логотипа при наведении */
 }
 
 /* Стили навигационного меню */
@@ -331,27 +330,22 @@ body {
   }
 }
 
-/* Стили для карусели уникальных автомобилей */
-.unique-cars {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-
+/* Общие стили для обеих каруселей */
 .carousel {
-    max-width: 900px;
+    max-width: 720px; /* Уменьшено с 900px */
     margin: 0 auto;
     box-shadow: 0 4px 20px var(--shadow-color);
 }
 
 .carousel-item img {
-    height: 500px;
+    height: 400px; /* Уменьшено с 500px */
     object-fit: cover;
 }
 
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px;
-    padding: 15px;
+    padding: 12px; /* Уменьшено с 15px */
 }
 
 .carousel-indicators button {
@@ -362,19 +356,21 @@ body {
 .carousel-control-next-icon {
     background-color: var(--primary-color);
     border-radius: 50%;
-    padding: 15px;
+    padding: 12px; /* Уменьшено с 15px */
+    width: 30px; /* Уменьшено с ~40px */
+    height: 30px; /* Уменьшено с ~40px */
 }
 
-/* Адаптивность карусели */
+/* Адаптивность для обеих каруселей */
 @media (max-width: 768px) {
     .carousel-item img {
-        height: 350px;
+        height: 280px; /* Уменьшено с 350px */
     }
 }
 
 @media (max-width: 576px) {
     .carousel-item img {
-        height: 250px;
+        height: 200px; /* Уменьшено с 250px */
     }
 
     .carousel-caption {
@@ -382,12 +378,32 @@ body {
     }
 
     .carousel-caption h5 {
-        font-size: 16px;
+        font-size: 14px; /* Уменьшено с 16px */
     }
 
     .carousel-caption p {
-        font-size: 12px;
+        font-size: 10px; /* Уменьшено с 12px */
     }
+}
+
+/* Стили для карусели популярных авто */
+.popular-cars {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.popular-cars .carousel {
+    max-width: 720px;
+}
+
+/* Стили для карусели уникальных авто */
+.unique-cars {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.unique-cars .carousel {
+    max-width: 720px;
 }
 
 /* Стили футера для темной темы */
@@ -402,4 +418,30 @@ body {
 
 .dark-theme footer hr {
     border-color: var(--border-color);
+}
+
+/* Стили для уменьшенного футера */
+footer.bg-dark {
+    padding-top: 2.4rem;
+    padding-bottom: 1.2rem;
+}
+
+footer .mb-4,
+footer .my-4 {
+    margin-bottom: 1rem !important;
+}
+
+footer .text-uppercase {
+    margin-bottom: 0.8rem !important;
+}
+
+footer .row {
+    margin-top: -0.5rem;
+}
+
+@media (max-width: 768px) {
+    footer.bg-dark {
+        padding-top: 1.8rem;
+        padding-bottom: 1rem;
+    }
 }
