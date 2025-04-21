@@ -1,10 +1,134 @@
-{% load static %}  <!-- Загрузка статических файлов Django -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru" style="height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CarRentRzn - Аренда автомобилей в Рязани{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/index3.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% block css %}{% endblock %}
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1 0 auto;
+        }
+        .footer {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'images/logo.png' %}" alt="Рязань Аренда Авто" width="180">
+                </a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="{% url 'cars' %}">Каталог</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                    <li><a href="#">Отзывы</a></li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <button class="theme-toggle" aria-label="Переключить тему" onclick="toggleTheme()">
+                    <span class="theme-icon">☀</span>
+                </button>
+                <button class="auth-button">
+                    <span class="auth-icon">👤</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
 
+    <!-- Кнопка помощи -->
+    <div class="help-button-container">
+        <button class="help-button" id="helpButton" onclick="toggleHelpModal()">
+            <span class="help-button-text">Помощь</span>
+            <span class="help-button-icon">?</span>
+        </button>
+        <div class="help-modal" id="helpModal">
+            <div class="help-modal-content">
+                <button class="help-close-button" onclick="closeHelpModal()">&times;</button>
+                <h3>Важная информация</h3>
+                <ul class="help-list">
+                    <li><i>✓</i> Находимся в Рязани</li>
+                    <li><i>✓</i> Возраст аренды с 21 года</li>
+                    <li><i>✓</i> Круглосуточная поддержка</li>
+                    <li><i>✓</i> Любой способ оплаты</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    {% block css %} {% endblock %}
+    <!-- Футер -->
+    <footer class="footer bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase mb-4">Контакты</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i> Рязань, ул. Маяковского, 512</li>
+                        <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i> +7 (4912) ххх-ххх</li>
+                        <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i> info@carrentrzn.ru</li>
+                    </ul>
+                </div>
 
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase mb-4">Навигация</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'cars' %}" class="text-white text-decoration-none">Каталог</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">О нас</a></li>
+                        <li class="mb-2"><a href="{% url 'contacts' %}" class="text-white text-decoration-none">Контакты</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Отзывы</a></li>
+                    </ul>
+                </div>
 
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-uppercase mb-4">Мы в соцсетях</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white fs-4"><i class="bi bi-telegram"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-vk"></i></a>
+                    </div>
+                </div>
+            </div>
 
-{% block content %} {% endblock %}
-<!--{% block footer %} {% endblock %}--> <!-- у меня еще нет футкра-->
+            <hr class="my-4">
+
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2025 CarRentRzn. Все права защищены.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Политика конфиденциальности</a>
+                    <a href="#" class="text-white text-decoration-none">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

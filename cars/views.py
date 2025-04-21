@@ -1,14 +1,29 @@
 from django.shortcuts import render
+from cars.models import Cars, CarsCategory
 
 
 def index(request):
-    return render(request, "cars/index.html")
+    context = {
+        "title": "CarRentRzn - Аренда автомобилей в Рязани"
+    }
+    return render(request, "cars/index.html", context)
 
 def cars(request):
-    return render(request, "cars/cars.html")
+    context = {
+        "title": "CarRentRzn - Каталог автомобилей",
+        "cars": Cars.objects.all(),
+        "categories": CarsCategory.objects.all(),
+    }
+    return render(request, "cars/cars.html", context)
 
 def contacts(request):
-    return render(request, "cars/contacts.html")
+    context = {
+        "title": "CarRentRzn - Контакты"
+    }
+    return render(request, "cars/contacts.html", context)
 
 def catalog(request):
-    return render(request, "cars/catalog.html")
+    context = {
+        "title": "CarRentRzn - Каталог"
+    }
+    return render(request, "cars/catalog.html", context)

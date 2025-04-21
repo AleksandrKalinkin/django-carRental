@@ -8,6 +8,9 @@ class CarsCategory(models.Model):
     name = models.CharField(max_length = 64, unique=True) #название категории уникально - поэтому True
     description = models.TextField(blank=True)# Здесь blank=True,это значит, что поле description м.б и не заполненым
 
+    class Meta:
+        verbose_name_plural = "Categories" #убираем S в админке на конце
+
     def __str__(self):
         return self.name
 
@@ -21,3 +24,6 @@ class Cars(models.Model):
 
     def __str__(self):
         return f"{self.name} | {self.category.name}"
+
+    class Meta:
+        verbose_name_plural = "Cars" #убираем S в админке на конце

@@ -1,304 +1,51 @@
+{% extends "cars/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarRentRzn - Каталог автомобилей</title>
-    <link rel="stylesheet" href="{% static 'css/index3.css' %}">
-    <link rel="stylesheet" href="{% static 'css/cars.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body class="light-theme">
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <a href="{% url 'index' %}">  <!-- Используем имя URL-шаблона 'index' -->
-                    <img src="/static/images/logo.png" alt="Рязань Аренда Авто" width="180">
-                </a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="{% url 'cars' %}">Каталог</a></li>
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
-                    <li><a href="#">Отзывы</a></li>
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cars.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <!-- Боковая панель с категориями -->
+        <div class="col-md-3">
+            <div class="categories-sidebar">
+                <h4>Категории авто</h4>
+                <ul class="category-list">
+                    <li class="category-item"><a href="#" class="category-link active">Все автомобили</a></li>
+                    {% for category in categories %}
+                        <li class="category-item">
+                            <a href="#" class="category-link">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
-            </nav>
-            <div class="header-buttons">
-                <button class="theme-toggle" aria-label="Переключить тему" onclick="toggleTheme()">
-                    <span class="theme-icon">☀</span>
-                </button>
-                <button class="auth-button">
-                    <span class="auth-icon">👤</span>
-                </button>
             </div>
         </div>
-    </header>
 
-    <main class="main-content">
-        <div class="container py-5">
+        <!-- Основной контент с карточками авто -->
+        <div class="col-md-9">
             <div class="row">
-                <!-- Боковая панель с категориями -->
-                <div class="col-md-3">
-                    <div class="categories-sidebar">
-                        <h4>Категории авто</h4>
-                        <ul class="category-list">
-                            <li class="category-item"><a href="#" class="category-link active">Все автомобили</a></li>
-                            <li class="category-item"><a href="#" class="category-link">Легковые</a></li>
-                            <li class="category-item"><a href="#" class="category-link">Внедорожники</a></li>
-                            <li class="category-item"><a href="#" class="category-link">Премиум</a></li>
-                            <li class="category-item"><a href="#" class="category-link">Спортивные</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Основной контент с карточками авто -->
-                <div class="col-md-9">
-                    <div class="row">
-                        <!-- Карточка автомобиля 1 - Hyundai Solaris -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/solaris.png' %}" class="car-img" alt="Hyundai Solaris">
-                                <div class="car-body">
-                                    <h5 class="car-title">Hyundai Solaris</h5>
-                                    <p class="car-description">Популярный седан с надежной конструкцией и комфортным салоном.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2022</li>
-                                        <li><strong>Двигатель:</strong> 1.6 л (123 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Передний</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">3 500 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 2 - Kia Rio -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/rio.png' %}" class="car-img" alt="Kia Rio">
-                                <div class="car-body">
-                                    <h5 class="car-title">Kia Rio</h5>
-                                    <p class="car-description">Стильный и экономичный седан с современным дизайном и хорошей комплектацией.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2023</li>
-                                        <li><strong>Двигатель:</strong> 1.6 л (123 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Передний</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">3 500 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 3 - Volkswagen Polo -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/polo.png' %}" class="car-img" alt="Volkswagen Polo">
-                                <div class="car-body">
-                                    <h5 class="car-title">Volkswagen Polo</h5>
-                                    <p class="car-description">Компактный городской автомобиль с экономичным двигателем и надежной конструкцией.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2023</li>
-                                        <li><strong>Двигатель:</strong> 1.6 л (110 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Передний</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">4 000 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 4 - Toyota Camry -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/camry70.png' %}" class="car-img" alt="Toyota Camry">
-                                <div class="car-body">
-                                    <h5 class="car-title">Toyota Camry</h5>
-                                    <p class="car-description">Современный седан бизнес-класса с мощным двигателем и роскошным салоном.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2022</li>
-                                        <li><strong>Двигатель:</strong> 2.5 л (249 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Передний</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">7 000 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 5 - Skoda Octavia -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/octavia.png' %}" class="car-img" alt="Skoda Octavia">
-                                <div class="car-body">
-                                    <h5 class="car-title">Skoda Octavia</h5>
-                                    <p class="car-description">Практичный семейный автомобиль с просторным багажником и комфортным салоном.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2021</li>
-                                        <li><strong>Двигатель:</strong> 1.4 л (150 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Передний</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">8 500 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 6 - Mercedes V-Class -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/mb_v_class.png' %}" class="car-img" alt="Mercedes V-Class">
-                                <div class="car-body">
-                                    <h5 class="car-title">Mercedes V-Class</h5>
-                                    <p class="car-description">Роскошный минивэн премиум-класса с просторным салоном и высоким комфортом.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2022</li>
-                                        <li><strong>Двигатель:</strong> 2.0 л (224 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Полный</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">40 000 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 7 - RAM TRX -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/ram_trx.png' %}" class="car-img" alt="RAM TRX">
-                                <div class="car-body">
-                                    <h5 class="car-title">RAM TRX</h5>
-                                    <p class="car-description">Мощный внедорожник с агрессивным дизайном и выдающимися характеристиками.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2023</li>
-                                        <li><strong>Двигатель:</strong> 6.2 л (702 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Полный</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">35 000 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Карточка автомобиля 8 - Ford Mustang -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="car-card">
-                                <img src="{% static 'images/mustang.png' %}" class="car-img" alt="Ford Mustang">
-                                <div class="car-body">
-                                    <h5 class="car-title">Ford Mustang</h5>
-                                    <p class="car-description">Легендарный американский спорткар с узнаваемым дизайном и мощным двигателем.</p>
-                                    <ul class="car-features">
-                                        <li><strong>Год:</strong> 2021</li>
-                                        <li><strong>Двигатель:</strong> 5.0 л (450 л.с.)</li>
-                                        <li><strong>Коробка:</strong> Автомат</li>
-                                        <li><strong>Привод:</strong> Задний</li>
-                                    </ul>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="car-price">30 000 ₽/сутки</span>
-                                        <button class="rent-btn">Арендовать</button>
-                                    </div>
-                                </div>
+                {% for car in cars %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="car-card h-100">
+                        <img src="{{ car.image.url }}" class="car-img-top" alt="{{ car.name }}">
+                        <div class="car-body">
+                            <h5 class="car-title">{{ car.name }}</h5>
+                            <p class="car-description">{{ car.short_description }}</p>
+                            <ul class="car-features">
+                                <li><strong>Цена:</strong> {{ car.price }} ₽/сутки</li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="car-price">{{ car.price }} ₽/сутки</span>
+                                <button class="btn btn-primary rent-btn">Арендовать</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </main>
-
-    <div class="help-button-container">
-        <button class="help-button" id="helpButton" onclick="toggleHelpModal()">
-            <span class="help-button-text">Помощь</span>
-            <span class="help-button-icon">?</span>
-        </button>
-        <div class="help-modal" id="helpModal">
-            <div class="help-modal-content">
-                <button class="help-close-button" onclick="closeHelpModal()">&times;</button>
-                <h3>Важная информация</h3>
-                <ul class="help-list">
-                    <li><i>✓</i> Находимся в Рязани</li>
-                    <li><i>✓</i> Возраст аренды с 21 года</li>
-                    <li><i>✓</i> Круглосуточная поддержка</li>
-                    <li><i>✓</i> Любой способ оплаты</li>
-                </ul>
+                {% endfor %}
             </div>
         </div>
     </div>
-
-    <!-- Футер -->
-    <footer class="bg-dark text-white pt-5 pb-4">
-        <div class="container">
-            <div class="row">
-                <!-- Колонка с контактами -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase mb-4">Контакты</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i> Рязань, ул. Маяковского, 512</li>
-                        <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i> +7 (4912) ххх-ххх</li>
-                        <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i> info@carrentrzn.ru</li>
-                    </ul>
-                </div>
-
-                <!-- Колонка с навигацией -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase mb-4">Навигация</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="{% url 'cars' %}" class="text-white text-decoration-none">Каталог</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">О нас</a></li>
-                        <li class="mb-2"><a href="{% url 'contacts' %}" class="text-white text-decoration-none">Контакты</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Отзывы</a></li>
-                    </ul>
-                </div>
-
-                <!-- Колонка с соцсетями -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase mb-4">Мы в соцсетях</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white fs-4"><i class="bi bi-telegram"></i></a>
-                        <a href="#" class="text-white fs-4"><i class="bi bi-whatsapp"></i></a>
-                        <a href="#" class="text-white fs-4"><i class="bi bi-vk"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <hr class="my-4">
-
-            <!-- Копирайт -->
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">© 2025 CarRentRzn. Все права защищены.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="text-white text-decoration-none me-3">Политика конфиденциальности</a>
-                    <a href="#" class="text-white text-decoration-none">Условия использования</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
+</div>
+{% endblock %}

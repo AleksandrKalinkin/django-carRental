@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from cars.views import index #импортируем метод index из view для своего приложения
-from cars.views import cars #импортируем метод index из view для своего приложения
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
+from cars.views import index, cars
 from cars.views import contacts
 from cars.views import catalog
 
@@ -30,3 +33,6 @@ urlpatterns = [
     path('contacts/', contacts, name="contacts"),
     path('catalog/', catalog, name="catalog"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

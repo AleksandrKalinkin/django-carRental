@@ -1,228 +1,121 @@
+{% extends "cars/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarRentRzn - Аренда автомобилей в Рязани</title>
-    <link rel="stylesheet" href="{% static 'css/index3.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body class="light-theme">
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="/static/images/logo.png" alt="Рязань Аренда Авто" width="180">
+
+{% block content %}
+<!-- Новая карусель - Топ 5 авто -->
+<section class="popular-cars py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Топ 5 авто, которые чаще всего арендуют</h2>
+        <div id="popularCarsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Индикаторы -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="{% url 'cars' %}">Каталог</a></li>
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="{% url 'contacts' %}">Контакты</a></li>
-                    <li><a href="#">Отзывы</a></li>
-                </ul>
-            </nav>
-            <div class="header-buttons">
-                <button class="theme-toggle" aria-label="Переключить тему" onclick="toggleTheme()">
-                    <span class="theme-icon">☀</span>
-                </button>
-                <button class="auth-button">
-                    <span class="auth-icon">👤</span>
-                </button>
-            </div>
-        </div>
-    </header>
 
-    <main class="main-content">
-        {% block content %}
-        <!-- Новая карусель - Топ 5 авто -->
-        <section class="popular-cars py-5">
-            <div class="container">
-                <h2 class="text-center mb-5">Топ 5 авто, которые чаще всего арендуют</h2>
-                <div id="popularCarsCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Индикаторы -->
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        <button type="button" data-bs-target="#popularCarsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <!-- Слайды -->
+            <div class="carousel-inner rounded-3">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/camry70.png' %}" class="d-block w-100" alt="Toyota Camry">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>1. Стильный Toyota Camry</h5>
+                        <p>Надежность и комфорт для бизнес-поездок</p>
                     </div>
-
-                    <!-- Слайды -->
-                    <div class="carousel-inner rounded-3">
-                        <div class="carousel-item active">
-                            <img src="{% static 'images/camry70.png' %}" class="d-block w-100" alt="Toyota Camry">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>1. Стильный Toyota Camry</h5>
-                                <p>Надежность и комфорт для бизнес-поездок</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/solaris.png' %}" class="d-block w-100" alt="Hyundai Solaris">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>2. Народный Hyundai Solaris</h5>
-                                <p>Экономичный и надежный вариант для города</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/rio.png' %}" class="d-block w-100" alt="Kia Rio">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>3. Народный Kia Rio</h5>
-                                <p>Популярный выбор для ежедневных поездок</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/polo.png' %}" class="d-block w-100" alt="Volkswagen Polo">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>4. Народный Volkswagen Polo</h5>
-                                <p>Немецкое качество по доступной цене</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/octavia.png' %}" class="d-block w-100" alt="Skoda Octavia">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>5. Семейный и быстрый Skoda Octavia</h5>
-                                <p>Просторный салон и современный дизайн</p>
-                            </div>
-                        </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/solaris.png' %}" class="d-block w-100" alt="Hyundai Solaris">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>2. Hyundai Solaris</h5>
+                        <p>Популярный и экономичный</p>
                     </div>
-
-                    <!-- Кнопки управления -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#popularCarsCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Предыдущий</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#popularCarsCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Следующий</span>
-                    </button>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/rio.png' %}" class="d-block w-100" alt="Kia Rio">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>3. Kia Rio</h5>
+                        <p>Стиль и комфорт</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/polo.png' %}" class="d-block w-100" alt="Volkswagen Polo">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>4. Volkswagen Polo</h5>
+                        <p>Немецкое качество</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/octavia.png' %}" class="d-block w-100" alt="Skoda Octavia">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>5. Skoda Octavia</h5>
+                        <p>Простор и надежность</p>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Карусель с уникальными автомобилями -->
-        <section class="unique-cars py-5">
-            <div class="container">
-                <h2 class="text-center mb-5">Наши уникальные предложения</h2>
-                <div id="uniqueCarsCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <!-- Индикаторы -->
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-
-                    <!-- Слайды -->
-                    <div class="carousel-inner rounded-3">
-                        <div class="carousel-item active">
-                            <img src="{% static 'images/mustang.png' %}" class="d-block w-100" alt="Mustang cabri">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Мощный и стильный кабриолет Mustang</h5>
-                                <p>Скорость и американский стиль</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/ram_trx.png' %}" class="d-block w-100" alt="RAM TRX">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Брутальный RAM TRX</h5>
-                                <p>2 в 1 - Проходимость и скорость</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/mb_v_class.png' %}" class="d-block w-100" alt="MB V-class">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Вместительный Mercedes Benz V-class</h5>
-                                <p>Немецкий комфорт и роскошь</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Кнопки управления -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Предыдущий</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Следующий</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-        {% endblock %}
-    </main>
-
-    <div class="help-button-container">
-        <button class="help-button" id="helpButton" onclick="toggleHelpModal()">
-            <span class="help-button-text">Помощь</span>
-            <span class="help-button-icon">?</span>
-        </button>
-        <div class="help-modal" id="helpModal">
-            <div class="help-modal-content">
-                <button class="help-close-button" onclick="closeHelpModal()">&times;</button>
-                <h3>Важная информация</h3>
-                <ul class="help-list">
-                    <li><i>✓</i> Находимся в Рязани</li>
-                    <li><i>✓</i> Возраст аренды с 21 года</li>
-                    <li><i>✓</i> Круглосуточная поддержка</li>
-                    <li><i>✓</i> Любой способ оплаты</li>
-                </ul>
-            </div>
+            <!-- Кнопки управления -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#popularCarsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Предыдущий</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#popularCarsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Следующий</span>
+            </button>
         </div>
     </div>
+</section>
 
-    <!-- Футер -->
-    <footer class="bg-dark text-white pt-5 pb-4">
-        <div class="container">
-            <div class="row">
-                <!-- Колонка с контактами -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase mb-4">Контакты</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i> Рязань, ул. Маяковского, 512</li>
-                        <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i> +7 (4912) ххх-ххх</li>
-                        <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i> info@carrentrzn.ru</li>
-                    </ul>
+<!-- Карусель с уникальными автомобилями -->
+<section class="unique-cars py-5">  <!-- Убрал bg-light -->
+    <div class="container">
+        <h2 class="text-center mb-5">Наши уникальные предложения</h2>
+        <div id="uniqueCarsCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Индикаторы -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Слайды -->
+            <div class="carousel-inner rounded-3">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/mustang.png' %}" class="d-block w-100" alt="Mustang cabri">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>Мощный и стильный кабриолет Mustang</h5>
+                        <p>Скорость и американский стиль</p>
+                    </div>
                 </div>
-
-                <!-- Колонка с навигацией -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase mb-4">Навигация</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="{% url 'catalog' %}" class="text-white text-decoration-none">Каталог</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">О нас</a></li>
-                        <li class="mb-2"><a href="{% url 'contacts' %}" class="text-white text-decoration-none">Контакты</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Отзывы</a></li>
-                    </ul>
+                <div class="carousel-item">
+                    <img src="{% static 'images/ram_trx.png' %}" class="d-block w-100" alt="RAM TRX">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>Мощный внедорожник RAM TRX</h5>
+                        <p>702 л.с. адреналина</p>
+                    </div>
                 </div>
-
-                <!-- Колонка с соцсетями -->
-                <div class="col-md-4 mb-4">
-                    <h5 class="text-uppercase mb-4">Мы в соцсетях</h5>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white fs-4"><i class="bi bi-telegram"></i></a>
-                        <a href="#" class="text-white fs-4"><i class="bi bi-whatsapp"></i></a>
-                        <a href="#" class="text-white fs-4"><i class="bi bi-vk"></i></a>
+                <div class="carousel-item">
+                    <img src="{% static 'images/mb_v_class.png' %}" class="d-block w-100" alt="Mercedes V-Class">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+                        <h5>Mercedes V-Class</h5>
+                        <p>Роскошь и комфорт</p>
                     </div>
                 </div>
             </div>
 
-            <hr class="my-4">
-
-            <!-- Копирайт -->
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">© 2025 CarRentRzn. Все права защищены.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="#" class="text-white text-decoration-none me-3">Политика конфиденциальности</a>
-                    <a href="#" class="text-white text-decoration-none">Условия использования</a>
-                </div>
-            </div>
+            <!-- Кнопки управления -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Предыдущий</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#uniqueCarsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Следующий</span>
+            </button>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+</section>
+
+{% endblock %}
