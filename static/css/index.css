@@ -2,8 +2,8 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #232222;
-  --header-bg: #f8f9fa; /* Цвет хедера в светлой теме */
-  --footer-bg: #343a40; /* Цвет футера в светлой теме */
+  --header-bg: #f8f9fa;
+  --footer-bg: #343a40;
   --border-color: #e0e0e0;
   --primary-color: #3498db;
   --shadow-color: rgba(0, 0, 0, 0.1);
@@ -15,8 +15,8 @@
 .dark-theme {
   --bg-color: #1a1a1a;
   --text-color: #f0f0f0;
-  --header-bg: #2c3e50; /* Цвет хедера в темной теме */
-  --footer-bg: #2c3e50; /* Теперь совпадает с header-bg */
+  --header-bg: #2c3e50;
+  --footer-bg: #2c3e50;
   --border-color: #444444;
   --primary-color: #5dade2;
   --shadow-color: rgba(0, 0, 0, 0.3);
@@ -137,42 +137,98 @@ body {
   align-items: center;
   gap: 15px;
 }
+
+/* Обновленные стили для кнопки темы */
 .theme-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color);
-  transition: transform 0.3s ease;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
+
 .theme-icon {
-  font-size: 32px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-  filter: contrast(0) brightness(0.9);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(80%);
 }
+
+.dark-theme .theme-icon {
+    filter: brightness(0) saturate(100%) invert(80%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(80%);
+}
+
 .theme-toggle:hover {
-  transform: scale(1.1);
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+.theme-toggle:hover .theme-icon {
+    transform: scale(1.1);
+}
+
+.dark-theme .theme-toggle {
+    background-color: var(--primary-color);
+}
+
+.dark-theme .theme-toggle:hover {
+    background-color: #5dade2;
+}
+
+/* Кнопка авторизации */
 .auth-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 28px;
-  padding: 8px;
-  color: var(--text-color);
-  transition: transform 0.3s ease;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
+
+.auth-icon {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
 .auth-button:hover {
-  transform: scale(1.1);
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.auth-button:hover .auth-icon {
+    transform: scale(1.1);
+}
+
+.dark-theme .auth-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.dark-theme .auth-button:hover {
+    background-color: #5dade2;
 }
 
 /* Основной контент */
@@ -417,5 +473,14 @@ body {
   }
   .carousel-caption p {
     font-size: 10px;
+  }
+  .theme-toggle,
+  .auth-button {
+    width: 40px;
+    height: 40px;
+  }
+  .theme-icon,
+  .auth-icon {
+    font-size: 18px;
   }
 }
