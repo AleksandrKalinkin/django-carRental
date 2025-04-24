@@ -1,0 +1,44 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Вход в аккаунт</h2>
+                    
+                    <form method="post" action="{% url 'users:login' %}">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Email или телефон</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Пароль</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary">Войти</button>
+                        </div>
+                        
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Неверный email/телефон или пароль
+                        </div>
+                        {% endif %}
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <p class="mb-0">Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрируйтесь</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -484,3 +484,18 @@ body {
     font-size: 18px;
   }
 }
+
+.dark-theme .card {
+    background-color: var(--header-bg);
+    border-color: var(--border-color);
+}
+
+.dark-theme .form-control {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.dark-theme .form-label {
+    color: var(--text-color);
+}

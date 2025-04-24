@@ -1,0 +1,76 @@
+{% extends 'cars/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Регистрация</h2>
+
+                    <form method="post" action="{% url 'users:register' %}">
+                        {% csrf_token %}
+
+                        <!-- Поле username -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Логин*</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+
+                        <!-- Поле email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email*</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <!-- Поле телефона -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+79XXXXXXXXX">
+                        </div>
+
+                        <!-- Имя и фамилия -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label">Имя*</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="last_name" class="form-label">Фамилия*</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                            </div>
+                        </div>
+
+                        <!-- Дата рождения -->
+                        <div class="mb-3">
+                            <label for="birth_date" class="form-label">Дата рождения*</label>
+                            <input type="date" class="form-control" id="birth_date" name="birth_date" required>
+                        </div>
+
+                        <!-- Пароли -->
+                        <div class="mb-3">
+                            <label for="password1" class="form-label">Пароль*</label>
+                            <input type="password" class="form-control" id="password1" name="password1" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Подтверждение пароля*</label>
+                            <input type="password" class="form-control" id="password2" name="password2" required>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <p class="mb-0">Уже есть аккаунт? <a href="{% url 'users:login' %}">Войдите</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

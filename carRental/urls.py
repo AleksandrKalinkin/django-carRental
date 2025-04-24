@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.static import static
-from cars.views import index, cars
+from cars.views import index
 from cars.views import contacts
 from cars.views import catalog
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"), #добавили индекс
     path('cars/', include("cars.urls", namespace="cars")), #добавили cars
+    path('users/', include("users.urls", namespace="users")), #добавили users
     path('contacts/', contacts, name="contacts"),
     path('catalog/', catalog, name="catalog"),
 ]

@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cars.apps.CarsConfig',  # Регистрация приложения cars
+    'cars.apps.CarsConfig',  # Создаем приложение cars
+    'users',  # Создаем приложение Users
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,7 @@ if DEBUG:
             },
         },
     }
+
+
+# используем по умолчанию класс User, который создали, а не от Django
+AUTH_USER_MODEL = 'users.User'
