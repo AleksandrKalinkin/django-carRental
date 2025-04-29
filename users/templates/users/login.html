@@ -11,26 +11,28 @@
                     
                     <form method="post" action="{% url 'users:login' %}">
                         {% csrf_token %}
-                        
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Email или телефон</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Пароль</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        
+                        {{ form.as_p }}
+<!--                        {% csrf_token %}-->
+<!--                        -->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="username" class="form-label">Email или телефон</label>-->
+<!--                            <input type="text" class="form-control" id="username" name="username" required>-->
+<!--                        </div>-->
+<!--                        -->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="password" class="form-label">Пароль</label>-->
+<!--                            <input type="password" class="form-control" id="password" name="password" required>-->
+<!--                        </div>-->
+<!--                        -->
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary">Войти</button>
                         </div>
-                        
-                        {% if form.errors %}
-                        <div class="alert alert-danger">
-                            Неверный email/телефон или пароль
-                        </div>
-                        {% endif %}
+<!--                        -->
+<!--                        {% if form.errors %}-->
+<!--                        <div class="alert alert-danger">-->
+<!--                            Неверный email/телефон или пароль-->
+<!--                        </div>-->
+<!--                        {% endif %}-->
                     </form>
                     
                     <div class="text-center mt-3">
