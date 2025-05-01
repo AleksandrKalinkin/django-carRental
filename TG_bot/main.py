@@ -27,10 +27,14 @@ def start(message):
         InlineKeyboardButton("Показать каталог", callback_data='show_catalog'),
         InlineKeyboardButton("Весь список авто", callback_data='full_list')
     )
+    markup.row(
+        InlineKeyboardButton("Помощь", callback_data='help'),
+        InlineKeyboardButton("Ссылка на сайт", callback_data='website')
+    )
 
     bot.send_message(
         message.chat.id,
-        "Привет! Я бот для отображения каталога автомобилей компании CarRentRzn\n\n"
+        "Привет! Я бот для просмотра каталога автомобилей компании CarRentRzn\n\n"
         "Выберите вариант просмотра:",
         reply_markup=markup
     )
@@ -42,10 +46,20 @@ def help(message):
         message.chat.id,
         "Доступные команды:\n"
         "/start - начать работу с ботом\n"
-        "/catalog - показать каталог автомобилей\n"
-        "/list - показать весь список автомобилей\n"
         "/help - показать эту справку"
     )
+
+
+@bot.callback_query_handler(func=lambda call: call.data == 'help')
+def handle_help_button(call):
+    help(call.message)
+    bot.answer_callback_query(call.id)
+
+
+@bot.callback_query_handler(func=lambda call: call.data == 'website')
+def handle_website_button(call):
+    bot.send_message(call.message.chat.id, "Наш сайт: http://127.0.0.1:8000/")
+    bot.answer_callback_query(call.id)
 
 
 @bot.callback_query_handler(func=lambda call: call.data == 'show_catalog')
@@ -55,7 +69,7 @@ def show_catalog(call):
         cars = Cars.objects.select_related('category').all()
 
         if not cars.exists():
-            bot.send_message(call.message.chat.id, "Каталог автомобилей пуст.")
+            bot.send_message(call.message.chat.id, "Каталог автомобилей пуст!")
             return
 
         # Сохраняем данные в глобальную переменную
@@ -78,7 +92,7 @@ def show_full_list(call):
         cars = Cars.objects.select_related('category').all()
 
         if not cars.exists():
-            bot.send_message(call.message.chat.id, "Каталог автомобилей пуст.")
+            bot.send_message(call.message.chat.id, "Каталог автомобилей пуст!")
             return
 
         # Формируем список всех автомобилей

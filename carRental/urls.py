@@ -23,7 +23,8 @@ from django.conf.urls.static import static
 from cars.views import index
 from cars.views import contacts
 from cars.views import catalog
-
+from django.urls import path
+from cars import views
 
 
 urlpatterns = [
@@ -33,6 +34,7 @@ urlpatterns = [
     path('users/', include("users.urls", namespace="users")), #добавили users
     path('contacts/', contacts, name="contacts"),
     path('catalog/', catalog, name="catalog"),
+    path('reviews/', views.reviews, name='reviews')
 ]
 
 if settings.DEBUG:

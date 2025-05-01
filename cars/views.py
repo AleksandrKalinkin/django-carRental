@@ -27,3 +27,6 @@ def catalog(request):
         "title": "CarRentRzn - Каталог"
     }
     return render(request, "cars/catalog.html", context)
+
+def reviews(request):
+    return render(request, 'cars/reviews.html')

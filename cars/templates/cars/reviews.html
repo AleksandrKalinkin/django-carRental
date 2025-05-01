@@ -1,0 +1,181 @@
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="reviews py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Отзывы наших клиентов</h1>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Отзыв 1 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar1.jpg' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                            <div>
+                                <h5 class="mb-0">Иван Петров</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"Арендовал Camry на неделю. Машина в идеальном состоянии, все чисто и аккуратно. Сотрудники вежливые, все объяснили. Обязательно буду пользоваться услугами снова!"</p>
+                        <p class="text-muted small mb-0">15 апреля 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Отзыв 2 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar2.jpg' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                            <div>
+                                <h5 class="mb-0">Елена Смирнова</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"Брала Solaris на выходные. Очень довольна! Машина как новая, расход топлива минимальный. Все документы оформили быстро, без лишних вопросов. Рекомендую!"</p>
+                        <p class="text-muted small mb-0">3 марта 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Отзыв 3 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar3.jpg' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                            <div>
+                                <h5 class="mb-0">Алексей Козлов</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"Арендовал Mustang для поездки на юбилей. Впечатления незабываемые! Машина мощная, все в идеальном состоянии. Единственное - хотелось бы более гибкие условия по страховке."</p>
+                        <p class="text-muted small mb-0">22 февраля 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Отзыв 4 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar4.jpg' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                            <div>
+                                <h5 class="mb-0">Ольга Иванова</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"Пользуюсь услугами уже третий раз. Всегда чисто, аккуратно и без проблем. В последний раз брала Kia Rio - очень экономичная и комфортная машина. Спасибо за качественный сервис!"</p>
+                        <p class="text-muted small mb-0">10 января 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Отзыв 5 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar5.jpg' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                            <div>
+                                <h5 class="mb-0">Дмитрий Волков</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"Брал Mercedes V-Class для семейной поездки. Просторно, комфортно, все работает идеально. Сотрудники пошли навстречу с изменением сроков аренды. Отличный сервис!"</p>
+                        <p class="text-muted small mb-0">5 декабря 2024</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Отзыв 6 -->
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{% static 'images/avatar6.jpg' %}" class="rounded-circle me-3" width="50" height="50" alt="Аватар">
+                            <div>
+                                <h5 class="mb-0">Анна Кузнецова</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-text">"Впервые арендовала машину в этом сервисе - Volkswagen Polo. Все прошло отлично! Машина как новая, полный бак, чистота. Оформление заняло минимум времени. Обязательно вернусь!"</p>
+                        <p class="text-muted small mb-0">20 ноября 2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Форма для добавления отзыва -->
+        <div class="mt-5 pt-4 border-top">
+            <h3 class="mb-4">Оставить свой отзыв</h3>
+            <form>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Ваше имя</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rating" class="form-label">Оценка</label>
+                        <select class="form-select" id="rating" required>
+                            <option value="" selected disabled>Выберите оценку</option>
+                            <option value="5">Отлично (5 звёзд)</option>
+                            <option value="4">Хорошо (4 звезды)</option>
+                            <option value="3">Удовлетворительно (3 звезды)</option>
+                            <option value="2">Плохо (2 звезды)</option>
+                            <option value="1">Ужасно (1 звезда)</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="review" class="form-label">Текст отзыва</label>
+                        <textarea class="form-control" id="review" rows="4" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
