@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from cars.models import Cars, CarsCategory
 
 
@@ -30,3 +30,11 @@ def catalog(request):
 
 def reviews(request):
     return render(request, 'cars/reviews.html')
+
+def car_card(request, car_id):
+    car = get_object_or_404(Cars, pk=car_id)
+    context = {
+        'car': car,
+        'title': f"{car.name} {car.category}"
+    }
+    return render(request, 'cars/car_card.html', context)
