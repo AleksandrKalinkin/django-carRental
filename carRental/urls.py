@@ -34,7 +34,7 @@ urlpatterns = [
     path('users/', include("users.urls", namespace="users")), #добавили users
     path('contacts/', contacts, name="contacts"),
     path('catalog/', catalog, name="catalog"),
-    path('reviews/', views.reviews, name='reviews')
+    path('reviews/', views.reviews, name='reviews'),
 ]
 
 if settings.DEBUG:

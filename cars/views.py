@@ -38,3 +38,5 @@ def car_card(request, car_id):
         'title': f"{car.name} {car.category}"
     }
     return render(request, 'cars/car_card.html', context)
+
+
