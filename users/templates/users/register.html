@@ -12,52 +12,51 @@
                     <form method="post" action="{% url 'users:register' %}">
                         {% csrf_token %}
 
-                        <!-- Поле username -->
+
                         <div class="mb-3">
-                            <label for="username" class="form-label">Логин*</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="{{ form.username.id_for_label }}" class="form-label">Логин*</label>
+                            {{ form.username }}
                         </div>
 
-                        <!-- Поле email -->
+
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email*</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email*</label>
+                            {{ form.email }}
                         </div>
 
-                        <!-- Поле телефона -->
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Телефон</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+79XXXXXXXXX">
+                            <label for="{{ form.phone_number.id_for_label }}" class="form-label">Телефон</label>
+                            {{ form.phone_number }}
                         </div>
 
-                        <!-- Имя и фамилия -->
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="first_name" class="form-label">Имя*</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">Имя*</label>
+                                {{ form.first_name }}
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="last_name" class="form-label">Фамилия*</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">Фамилия*</label>
+                                {{ form.last_name }}
                             </div>
                         </div>
 
-                        <!-- Дата рождения -->
-                        <div class="mb-3">
-                            <label for="birth_date" class="form-label">Дата рождения*</label>
-                            <input type="date" class="form-control" id="birth_date" name="birth_date" required>
-                        </div>
-
-                        <!-- Пароли -->
-                        <div class="mb-3">
-                            <label for="password1" class="form-label">Пароль*</label>
-                            <input type="password" class="form-control" id="password1" name="password1" required>
-                        </div>
 
                         <div class="mb-3">
-                            <label for="password2" class="form-label">Подтверждение пароля*</label>
-                            <input type="password" class="form-control" id="password2" name="password2" required>
+                            <label for="{{ form.birth_day.id_for_label }}" class="form-label">Дата рождения*</label>
+                            {{ form.birth_day }}
+
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label">Пароль*</label>
+                            {{ form.password1 }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label">Подтверждение пароля*</label>
+                            {{ form.password2 }}
                         </div>
                         
                         <div class="d-grid mb-3">
