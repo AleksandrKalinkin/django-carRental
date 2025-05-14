@@ -1,37 +1,73 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from users.models import User
 from django import forms
-
-class UserLoginForm(AuthenticationForm): #создаем дочерний класс
-
-    username = forms.CharField(widget = forms.TextInput(attrs={'class': 'form-control', 'required': True}))
-
-    password = forms.CharField(widget = forms.PasswordInput(attrs={'class': 'form-control', 'required': True}))
-
-    class Meta: #Дочерний класс Meta- в качестве базовой модели будет использоваться user из user/models
-        model = User
-        fields = ('username', 'password') #нам нужны только эти поля при авторизации, а год рождения и тд - не нужно
+from datetime import date
+from django.core.exceptions import ValidationError
 
 
-class UserRegistrationForm(UserCreationForm):
-
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'required': True}))
-
-    email = forms.CharField(widget=forms.EmailInput(attrs={'class':'form-control', 'required': True}))
-
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '+79XXXXXXXXX', 'required': True}))
-
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': True}))
-
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': True}))
-
-    birth_day = forms.CharField(widget=forms.DateInput(attrs={'class': 'form-control', 'required': True}))
-
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': True}))
-
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': True}))
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': True}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': True}))
 
     class Meta:
         model = User
-        fields = ('username','email','phone_number','first_name', 'last_name','birth_day', 'password1', 'password2')
+        fields = ('username', 'password')
 
+
+class UserRegistrationForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': True}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'required': True}))
+    phone_number = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': '+79XXXXXXXXX',
+            'required': True
+        })
+    )
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': True}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': True}))
+    birth_day = forms.DateField(
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date',
+            'required': True,
+            'max': str(date.today().replace(year=date.today().year - 21))  # Ограничение в HTML
+        }),
+        help_text="Для регистрации вам должно быть не менее 21 года"
+    )
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': True}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'required': True}))
+    agreement = forms.BooleanField(
+        label="Согласие на обработку персональных данных",
+        required=True,
+        error_messages={
+            'required': 'Необходимо дать согласие на обработку персональных данных'
+        },
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'phone_number', 'first_name', 'last_name', 'birth_day', 'password1', 'password2')
+
+    def clean_birth_day(self):
+        birth_day = self.cleaned_data['birth_day']
+        today = date.today()
+        age = today.year - birth_day.year - ((today.month, today.day) < (birth_day.month, birth_day.day))
+
+        if age < 21:
+            raise ValidationError("Для регистрации вам должно быть не менее 21 года")
+        return birth_day
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Этот email уже используется")
+        return email
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
+        if phone_number:  # Проверяем только если номер указан
+            if User.objects.filter(phone_number=phone_number).exists():
+                raise forms.ValidationError("Этот номер телефона уже используется")
+        return phone_number

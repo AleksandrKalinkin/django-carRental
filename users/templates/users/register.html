@@ -12,51 +12,92 @@
                     <form method="post" action="{% url 'users:register' %}">
                         {% csrf_token %}
 
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
                         <div class="mb-3">
-                            <label for="{{ form.username.id_for_label }}" class="form-label">Логин*</label>
+                            <label for="{{ form.username.id_for_label }}" class="form-label">Логин</label>
                             {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="text-danger mt-1">{{ form.username.errors }}</div>
+                            {% endif %}
                         </div>
 
-
                         <div class="mb-3">
-                            <label for="{{ form.email.id_for_label }}" class="form-label">Email*</label>
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
                             {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-danger mt-1">{{ form.email.errors }}</div>
+                            {% endif %}
                         </div>
 
                         <div class="mb-3">
                             <label for="{{ form.phone_number.id_for_label }}" class="form-label">Телефон</label>
                             {{ form.phone_number }}
+                            {% if form.phone_number.errors %}
+                                <div class="text-danger mt-1">{{ form.phone_number.errors }}</div>
+                            {% endif %}
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="{{ form.first_name.id_for_label }}" class="form-label">Имя*</label>
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">Имя</label>
                                 {{ form.first_name }}
+                                {% if form.first_name.errors %}
+                                    <div class="text-danger mt-1">{{ form.first_name.errors }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="{{ form.last_name.id_for_label }}" class="form-label">Фамилия*</label>
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">Фамилия</label>
                                 {{ form.last_name }}
+                                {% if form.last_name.errors %}
+                                    <div class="text-danger mt-1">{{ form.last_name.errors }}</div>
+                                {% endif %}
                             </div>
                         </div>
 
-
                         <div class="mb-3">
-                            <label for="{{ form.birth_day.id_for_label }}" class="form-label">Дата рождения*</label>
+                            <label for="{{ form.birth_day.id_for_label }}" class="form-label">Дата рождения</label>
                             {{ form.birth_day }}
-
+                            {% if form.birth_day.errors %}
+                                <div class="text-danger mt-1">{{ form.birth_day.errors }}</div>
+                            {% endif %}
+                            <small class="form-text text-muted">{{ form.birth_day.help_text }}</small>
                         </div>
 
-
                         <div class="mb-3">
-                            <label for="{{ form.password1.id_for_label }}" class="form-label">Пароль*</label>
+                            <label for="{{ form.password1.id_for_label }}" class="form-label">Пароль</label>
                             {{ form.password1 }}
+                            {% if form.password1.errors %}
+                                <div class="text-danger mt-1">{{ form.password1.errors }}</div>
+                            {% endif %}
                         </div>
 
                         <div class="mb-3">
-                            <label for="{{ form.password2.id_for_label }}" class="form-label">Подтверждение пароля*</label>
+                            <label for="{{ form.password2.id_for_label }}" class="form-label">Подтверждение пароля</label>
                             {{ form.password2 }}
+                            {% if form.password2.errors %}
+                                <div class="text-danger mt-1">{{ form.password2.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                         <!-- Соглашение -->
+                        <div class="mb-3">
+                            <div class="form-check">
+                                {{ form.agreement }}
+                                <label class="form-check-label" for="{{ form.agreement.id_for_label }}">
+                                    Я даю согласие на обработку моих персональных данных
+                                </label>
+                                {% if form.agreement.errors %}
+                                    <div class="text-danger mt-1">{{ form.agreement.errors }}</div>
+                                {% endif %}
+                            </div>
                         </div>
                         
                         <div class="d-grid mb-3">

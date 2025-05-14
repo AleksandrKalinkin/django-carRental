@@ -5,7 +5,16 @@ from django.contrib.auth.models import AbstractUser # унаследуем users
 class User(AbstractUser):
     #Добавляем новое поле - фото (они будут храниться в media/users_images)
     image = models.ImageField(upload_to="users_images", blank=True)
-    phone_number = models.CharField(max_length=20, blank=True, null=True)  # Добавляем телефон
+    email = models.EmailField(
+        unique=True,  # Уникальность на уровне БД
+        error_messages={
+            'unique': "Пользователь с таким email уже существует"
+        }
+    )
+    phone_number = models.CharField(max_length=20, blank=True, null=True, unique=True,
+                                    error_messages={
+                                                    'unique': "Этот номер телефона уже зарегистрирован"
+                                                    })  # Добавляем телефон
     birth_day = models.DateField(blank=True, null=True)  # Добавляем дату рождения
 
 
