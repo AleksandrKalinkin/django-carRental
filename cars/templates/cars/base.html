@@ -38,6 +38,59 @@
         .telegram-bot-link:hover {
             color: #0088cc;
         }
+        /* Новые стили для кнопок */
+        .header-auth-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        /* Стили для светлой темы */
+        .light-theme .header-auth-btn {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .light-theme .header-auth-btn:hover {
+            background-color: #e0e0e0;
+        }
+        /* Стили для темной темы */
+        .dark-theme .header-auth-btn {
+            background-color: #444;
+            color: #fff;
+        }
+        .dark-theme .header-auth-btn:hover {
+            background-color: #555;
+        }
+        /* Кнопка темы */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            transition: all 0.3s ease;
+
+        }
+        .dark-theme .theme-toggle {
+            background-color: #444;
+            color: #fff;
+        }
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
     </style>
 </head>
 <body class="light-theme">
@@ -58,12 +111,26 @@
                 </ul>
             </nav>
             <div class="header-buttons">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}" class="header-auth-btn">
+                        <span class="auth-icon">👤</span>
+                        <span class="auth-text">Профиль</span>
+                    </a>
+                {% endif %}
                 <button class="theme-toggle" aria-label="Переключить тему" onclick="toggleTheme()">
                     <span class="theme-icon">🌙</span>
                 </button>
-                <button onclick="window.location.href='{% url 'users:login' %}'" class="auth-button" aria-label="Авторизация">
-                    <span class="auth-icon">👤</span>
-                </button>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:logout' %}" class="header-auth-btn">
+                        <span class="auth-icon">🚪</span>
+                        <span class="auth-text">Выйти</span>
+                    </a>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="header-auth-btn">
+                        <span class="auth-icon">🔑</span>
+                        <span class="auth-text">Войти</span>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </header>

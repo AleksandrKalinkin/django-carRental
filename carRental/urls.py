@@ -35,6 +35,8 @@ urlpatterns = [
     path('contacts/', contacts, name="contacts"),
     path('catalog/', catalog, name="catalog"),
     path('reviews/', views.reviews, name='reviews'),
+    path('users/', views.reviews, name='users.urls'),
+
 ]
 
 if settings.DEBUG:
