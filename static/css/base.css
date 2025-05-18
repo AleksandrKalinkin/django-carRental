@@ -1,0 +1,164 @@
+/* Base styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+/* Header styles */
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav ul {
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav ul li {
+    white-space: nowrap;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Button styles - ОСНОВНЫЕ СТИЛИ КНОПОК */
+.header-auth-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+/* Light theme */
+.light-theme .header-auth-btn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Dark theme */
+.dark-theme .header-auth-btn {
+    background-color: #444;
+    color: #fff;
+}
+
+/* СТИЛИ ПРИ НАВЕДЕНИИ - ТОЧНО КАК У КНОПКИ ТЕМЫ */
+.light-theme .header-auth-btn:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 0 0 2px rgba(0, 110, 253, 0.3); /* Такая же подсветка как у кнопки темы */
+}
+
+.dark-theme .header-auth-btn:hover {
+    background-color: #555;
+    box-shadow: 0 0 0 2px rgba(0, 110, 253, 0.3); /* Такая же подсветка как у кнопки темы */
+}
+
+/* Кнопка темы - оригинальные стили */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.dark-theme .theme-toggle {
+    background-color: #444;
+    color: #fff;
+}
+
+/* Подсветка кнопки темы при наведении */
+.light-theme .theme-toggle:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 0 0 2px rgba(0, 110, 253, 0.3);
+}
+
+.dark-theme .theme-toggle:hover {
+    background-color: #555;
+    box-shadow: 0 0 0 2px rgba(0, 110, 253, 0.3);
+}
+
+/* Footer links */
+.telegram-bot-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.telegram-bot-link:hover {
+    color: #0088cc;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .header .container {
+        justify-content: center;
+        gap: 15px;
+    }
+    .nav {
+        position: static;
+        order: 3;
+        transform: none;
+        margin: 10px 0;
+        width: 100%;
+    }
+    .nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .logo, .header-buttons {
+        position: static;
+        transform: none;
+    }
+}

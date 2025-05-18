@@ -33,9 +33,7 @@ urlpatterns = [
     path('cars/', include("cars.urls", namespace="cars")), #добавили cars
     path('users/', include("users.urls", namespace="users")), #добавили users
     path('contacts/', contacts, name="contacts"),
-    path('catalog/', catalog, name="catalog"),
     path('reviews/', views.reviews, name='reviews'),
-    path('users/', views.reviews, name='users.urls'),
 
 ]
 

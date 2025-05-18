@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/cars.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cars.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,10 +13,17 @@
             <div class="categories-sidebar">
                 <h4>Категории авто</h4>
                 <ul class="category-list">
-                    <li class="category-item"><a href="#" class="category-link active">Все автомобили</a></li>
+                    <li class="category-item">
+                        <a href="{% url 'cars:index' %}" class="category-link {% if not request.GET.category %}active{% endif %}">
+                            Все автомобили
+                        </a>
+                    </li>
                     {% for category in categories %}
                         <li class="category-item">
-                            <a href="#" class="category-link">{{ category.name }}</a>
+                            <a href="{% url 'cars:index' %}?category={{ category.id }}"
+                               class="category-link {% if request.GET.category == category.id|stringformat:'s' %}active{% endif %}">
+                                {{ category.name }}
+                            </a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -25,27 +32,44 @@
 
         <!-- Основной контент с карточками авто -->
         <div class="col-md-9">
+            {% if cars %}
             <div class="row">
                 {% for car in cars %}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="car-card h-100">
-                        <img src="{{ car.image.url }}" class="car-img" alt="{{ car.name }}">
+                        {% if car.image %}
+                        <img src="{{ car.image.url }}" class="car-img-top img-fluid" alt="{{ car.name }}">
+                        {% else %}
+                        <div class="no-image-placeholder">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        {% endif %}
                         <div class="car-body">
                             <h5 class="car-title">{{ car.name }}</h5>
-                            <p class="car-description">{{ car.short_description }}</p>
-                            <ul class="car-features">
-                                <li><strong>Цена:</strong> {{ car.price }} ₽/сутки</li>
-                            </ul>
+                            <p class="car-short-description">
+                                {{ car.short_description|default:"Описание отсутствует" }}
+                            </p>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span class="car-price">{{ car.price }} ₽/сутки</span>
-                                <a href="{% url 'cars:car_card' car.id %}"  class="btn btn-primary rent-btn">Подробнее</a>
+                                <a href="{% url 'cars:car_card' car.id %}" class="btn btn-primary rent-btn">
+                                    Подробнее
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+            {% else %}
+            <div class="alert alert-info">
+                Автомобили не найдены. Пожалуйста, выберите другую категорию.
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/cars.js' %}"></script>
 {% endblock %}
