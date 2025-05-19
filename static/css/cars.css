@@ -183,3 +183,9 @@
         height: 250px;
     }
 }
+
+.category-link.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}

@@ -8,10 +8,17 @@ def index(request):
     }
     return render(request, "cars/index.html", context)
 
+
 def cars(request):
+    category_id = request.GET.get('category')
+    cars_list = Cars.objects.all()
+
+    if category_id:
+        cars_list = cars_list.filter(category_id=category_id)
+
     context = {
         "title": "CarRentRzn - Каталог автомобилей",
-        "cars": Cars.objects.all(),
+        "cars": cars_list,
         "categories": CarsCategory.objects.all(),
     }
     return render(request, "cars/cars.html", context)

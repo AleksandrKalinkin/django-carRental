@@ -20,7 +20,7 @@ class Cars(models.Model):
     description = models.TextField(blank=True)  # Здесь blank=True,это значит, что поле description м.б и не заполненым
     short_description = models.TextField(max_length=64, blank=True)  # Здесь blank=True,это значит, что поле description м.б и не заполненым
     price = models.DecimalField(max_digits=7, decimal_places=2) #5- так как у меня цена тачки за сутки максимум 30000.00 будет, 2 - так как.00
-    category = models.ForeignKey(CarsCategory, on_delete= models.PROTECT)#внешний ключ из таблицы
+    category = models.ForeignKey(CarsCategory, on_delete= models.PROTECT, related_name='cars')#внешний ключ из таблицы
 
     def __str__(self):
         return f"{self.name} | {self.category.name}"

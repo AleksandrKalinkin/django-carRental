@@ -9,29 +9,38 @@
                 <div class="card-body p-4">
                     <h2 class="card-title text-center mb-4">Вход в аккаунт</h2>
                     
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {% if 'username' in form.errors %}
+                            Пользователя с таким логином не существует
+                        {% else %}
+                            Неверный пароль
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
                     <form method="post" action="{% url 'users:login' %}">
                         {% csrf_token %}
-
 
                         <div class="mb-3">
                             <label for="{{ form.username.id_for_label }}" class="form-label">Логин</label>
                             {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="text-danger small">{{ form.username.errors }}</div>
+                            {% endif %}
                         </div>
 
                         <div class="mb-3">
                             <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
                             {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="text-danger small">{{ form.password.errors }}</div>
+                            {% endif %}
                         </div>
 
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary">Войти</button>
                         </div>
-<!--                        -->
-<!--                        {% if form.errors %}-->
-<!--                        <div class="alert alert-danger">-->
-<!--                            Неверный email/телефон или пароль-->
-<!--                        </div>-->
-<!--                        {% endif %}-->
                     </form>
                     
                     <div class="text-center mt-3">
