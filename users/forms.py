@@ -1,8 +1,10 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from users.models import User
 from django import forms
 from datetime import date
 from django.core.exceptions import ValidationError
+
+from TG_bot.main import user_states
 
 
 class UserLoginForm(AuthenticationForm):
@@ -71,3 +73,17 @@ class UserRegistrationForm(UserCreationForm):
             if User.objects.filter(phone_number=phone_number).exists():
                 raise forms.ValidationError("Этот номер телефона уже используется")
         return phone_number
+
+class UserProfileForm(UserChangeForm):
+
+    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': True, 'class': 'form-control'}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'readonly': True, 'class': 'form-control'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    birth_day = forms.DateField(widget=forms.DateInput(attrs={'readonly': True, 'type': 'date','class': 'form-control'},format='%Y-%m-%d'))
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'phone_number','birth_day', 'image')
