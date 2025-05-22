@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ['*']  # Разрешаем все хосты для разра�
 
 # Application definition
 INSTALLED_APPS = [
+    'users',  # Создаем приложение Users
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cars.apps.CarsConfig',  # Создаем приложение cars
-    'users',  # Создаем приложение Users
+
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,12 @@ if DEBUG:
 
 # используем по умолчанию класс User, который создали, а не от Django
 AUTH_USER_MODEL = 'users.User'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'  # Для Mail.ru
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'ваш_email@mail.ru'
+EMAIL_HOST_PASSWORD = 'ваш_пароль'
+DEFAULT_FROM_EMAIL = 'ваш_email@mail.ru'

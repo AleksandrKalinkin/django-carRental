@@ -76,12 +76,12 @@ class UserRegistrationForm(UserCreationForm):
 
 class UserProfileForm(UserChangeForm):
 
-    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': True, 'class': 'form-control'}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={'readonly': True, 'class': 'form-control'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': True, 'class': 'form-control bg-secondary bg-opacity-25'}))
+    email = forms.CharField(widget=forms.EmailInput(attrs={'readonly': True, 'class': 'form-control bg-secondary bg-opacity-25'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    birth_day = forms.DateField(widget=forms.DateInput(attrs={'readonly': True, 'type': 'date','class': 'form-control'},format='%Y-%m-%d'))
+    birth_day = forms.DateField(widget=forms.DateInput(attrs={'readonly': True, 'type': 'date','class': 'form-control bg-secondary bg-opacity-25'},format='%Y-%m-%d'))
     image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control'}))
 
     class Meta:

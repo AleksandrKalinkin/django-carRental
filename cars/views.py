@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from cars.models import Cars, CarsCategory
+from django.shortcuts import render
 
 
 def index(request):
@@ -39,9 +40,9 @@ def reviews(request):
     return render(request, 'cars/reviews.html')
 
 def car_card(request, car_id):
-    car = get_object_or_404(Cars, pk=car_id)
+    car = get_object_or_404(Cars, pk=car_id) # <- Это QuerySet!
     context = {
-        'car': car,
+        'car': car,  # Объект из БД передается в шаблон
         'title': f"{car.name} {car.category}"
     }
     return render(request, 'cars/car_card.html', context)

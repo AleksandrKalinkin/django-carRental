@@ -32,7 +32,7 @@
                 {% if user.is_authenticated %}
                     <a href="{% url 'users:profile' %}" class="header-auth-btn">
                         <span class="auth-icon">👤</span>
-                        <span class="auth-text">Профиль</span>
+                        <span class="auth-text">{{user.username}}</span>
                     </a>
                 {% endif %}
                 {% if user.is_authenticated %}

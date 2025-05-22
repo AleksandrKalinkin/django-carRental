@@ -46,9 +46,15 @@
                     <div class="text-center mt-3">
                         <p class="mb-0">Нет аккаунта? <a href="{% url 'users:register' %}">Зарегистрируйтесь</a></p>
                     </div>
+
+                    <div class="text-center mb-3">
+                        <a href="{% url 'password_reset' %}" class="text-decoration-none">Забыли пароль?</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+
+
