@@ -1,0 +1,63 @@
+{% extends "cars/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">История бронирований</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {% if bookings %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Автомобиль</th>
+                    <th>Даты</th>
+                    <th>Время</th>
+                    <th>Доп. услуги</th>
+                    <th>Сумма</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.car.name }}</td>
+                    <td>
+                        {{ booking.start_date|date:"d.m.Y" }} - 
+                        {{ booking.end_date|date:"d.m.Y" }}
+                    </td>
+                    <td>
+                        {{ booking.start_time|time:"H:i" }} - 
+                        {{ booking.end_time|time:"H:i" }}
+                    </td>
+                    <td>{% if booking.child_seat %}Детское кресло{% else %}—{% endif %}</td>
+                    <td>{{ booking.total_price }} ₽</td>
+                    <td>
+                        <span class="badge 
+                            {% if booking.status == 'confirmed' %}bg-success
+                            {% elif booking.status == 'canceled' %}bg-danger
+                            {% else %}bg-warning text-dark{% endif %}">
+                            {{ booking.get_status_display }}
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        У вас пока нет бронирований. <a href="{% url 'cars' %}" class="alert-link">Выбрать автомобиль</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

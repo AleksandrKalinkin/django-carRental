@@ -6,28 +6,28 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-body p-4">
-
-
                     <form action="{% url 'users:profile' %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                         <h2 class="card-title mb-4">Профиль пользователя</h2>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="card-title mb-0">Профиль пользователя</h2>
+                            <a href="{% url 'cars:booking_history' %}" class="btn btn-outline-primary">
+                                История бронирований
+                            </a>
+                        </div>
 
-                    <div class="text-center mb-4">
-                        {% if user.image %}
-                            <img src="{{ user.image.url }}" alt="Аватар" class="rounded-circle" width="150" height="150">
-                        {% else %}
-                            <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">
-                                <span class="text-white">Нет аватарки</span>
-                            </div>
-                        {% endif %}
+                        <div class="text-center mb-4">
+                            {% if user.image %}
+                                <img src="{{ user.image.url }}" alt="Аватар" class="rounded-circle" width="150" height="150">
+                            {% else %}
+                                <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center" style="width: 150px; height: 150px;">
+                                    <span class="text-white">Нет аватарки</span>
+                                </div>
+                            {% endif %}
+                        </div>
 
-                    </div>
-
-                        {% csrf_token %}
-                            <div class="form-group">
-                                {{ form.image }}
-
-                            </div>
+                        <div class="form-group">
+                            {{ form.image }}
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="{{ form.username.id_for_label }}"><strong>Логин:</strong></label>
